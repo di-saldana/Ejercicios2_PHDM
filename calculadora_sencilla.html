@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Sencilla</title>
+</head>
+
+<body>
+
+    <h2>Calculadora sencilla</h2>
+
+    <label for="valor1">Operando 1:</label>
+    <input type="text" id="valor1" />
+
+    <br>
+
+    <label for="valor2">Operando 2:</label>
+    <input type="text" id="valor2" />
+
+    <br><br>
+
+    <label for="resultado">Resultado:</label>
+    <span id="resultado"></span>
+
+    <br><br>
+
+    <button onclick="sumar()">Suma</button>
+    <button onclick="restar()">Resta</button>
+    <button onclick="multiplicar()">Multiplicación</button>
+    <button onclick="dividir()">División</button>
+
+
+    <script>
+        function sumar() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                alert('Ingrese valores numéricos');
+                return;
+            }
+
+            document.getElementById('resultado').innerHTML = valor1 + valor2;
+        }
+
+        function restar() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                alert('Ingrese valores numéricos.');
+                return;
+            }
+
+            document.getElementById('resultado').innerHTML = valor1 - valor2;
+        }
+
+        function multiplicar() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                alert('Ingrese valores numéricos.');
+                return;
+            }
+
+            document.getElementById('resultado').innerHTML = valor1 * valor2;
+        }
+
+        function dividir() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                alert('Ingrese valores numéricos.');
+                return;
+            }
+
+            if (valor2 === 0) {
+                alert('No se puede dividir por cero');
+                return;
+            }
+
+            document.getElementById('resultado').innerHTML = valor1 / valor2;
+        }
+    </script>
+
+</body>
+</html>
