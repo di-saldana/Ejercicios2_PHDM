@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Avanzada</title>
+
+    <style>
+        #resultado {
+            border: 1px solid gray; 
+            text-align: right;
+            padding: 5px;
+            border-radius: 3px;
+            font-size: 15pt;
+            font-family: sans-serif;
+        }
+
+        h2 {
+            margin: 20px;
+        }
+
+        table {
+            margin: 20px;
+        }
+
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: 15pt;
+            font-family: sans-serif;
+        }
+
+        button:hover {
+            background-color: #ddd;
+            border-radius: 3px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>Calculadora avanzada</h2>
+
+    <table>
+
+        <tr>
+            <div><td colspan="3" id="resultado"></td></div>
+            <td><button onclick="limpiar()">C</button></td>
+        </tr>
+
+        <tr>
+            <td><button onclick="setValue('7')">7</button></td>
+            <td><button onclick="setValue('8')">8</button></td>
+            <td><button onclick="setValue('9')">9</button></td>
+            <td><button onclick="setValue('/')">/</button></td>
+        </tr>
+
+        <tr>
+            <td><button onclick="setValue('4')">4</button></td>
+            <td><button onclick="setValue('5')">5</button></td>
+            <td><button onclick="setValue('6')">6</button></td>
+            <td><button onclick="setValue('*')">*</button></td>
+        </tr>
+        
+        <tr>
+            <td><button onclick="setValue('1')">1</button></td>
+            <td><button onclick="setValue('2')">2</button></td>
+            <td><button onclick="setValue('3')">3</button></td>
+            <td><button onclick="setValue('-')">-</button></td>
+        </tr>
+
+        <tr>
+            <td><button onclick="setValue('0')">0</button></td>
+            <td><button onclick="setValue('.')">.</button></td>
+            <td><button onclick="calcular()">=</button></td>
+            <td><button onclick="setValue('+')">+</button></td>
+        </tr>
+
+    </table>
+    
+
+    <script>
+        function sumar() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                alert('Ingrese valores numéricos');
+                return;
+            }
+
+            document.getElementById('resultado').innerHTML = valor1 + valor2;
+        }
+
+        function restar() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                alert('Ingrese valores numéricos');
+                return;
+            }
+
+            document.getElementById('resultado').innerHTML = valor1 - valor2;
+        }
+
+        function multiplicar() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                alert('Ingrese valores numéricos');
+                return;
+            }
+
+            document.getElementById('resultado').innerHTML = valor1 * valor2;
+        }
+
+        function dividir() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                alert('Ingrese valores numéricos');
+                return;
+            }
+
+            if (valor2 === 0) {
+                alert('No se puede dividir por cero');
+                return;
+            }
+
+            document.getElementById('resultado').innerHTML = valor1 / valor2;
+        }
+
+        function calcular() {
+            try {
+                var expresion = document.getElementById('resultado').innerHTML;
+
+                if (!expresion.trim()) {
+                    throw new Error('Ingrese una expresión');
+                }
+
+                var resultado = eval(expresion);
+
+                if (!isNaN(resultado) && isFinite(resultado)) {
+                    document.getElementById('resultado').innerHTML = resultado;
+                } else {
+                    limpiar()
+                    throw new Error("El resultado no es un número finito");
+                }
+
+                console.log(resultado)
+                
+            } catch (error) {
+                if (error instanceof SyntaxError) {
+                    limpiar()
+                    alert("ERROR: Expresión inválida");
+                } else {
+                    limpiar()
+                    alert("ERROR: " + error.message);
+                }
+            }
+        }
+
+        function limpiar() {
+            document.getElementById('resultado').innerHTML = '';
+        }
+
+        function setValue(valor) {
+            document.getElementById('resultado').innerHTML += valor;
+        }
+    </script>
+
+</body>
+</html>
