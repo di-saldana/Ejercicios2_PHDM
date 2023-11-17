@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Validación formulario</title>
+
+    <style>
+        body {
+            background-color: gray;
+            display: flex;
+            align-items: center;
+            vertical-align: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #box {
+            width: 400px;
+            background-color: #ccc;
+            border: 2px;
+            border-color: #C0C0C0;
+            padding: 30px;
+            
+        }
+
+        input {
+            border-radius: 3px;
+            width: 250px;
+            height: 30px;
+            float: right;
+        }
+        
+        label {
+            float: left;
+        }
+
+        button {
+            padding: 10px;
+            width: 100px;
+            height: 40px;
+        }
+
+        .error {
+            color: red;
+            display: none;
+        }
+
+        #errorUsuario,
+        #errorPass {
+            color: red;
+            display: none;
+        }
+
+        #validacionCorrecta {
+            color: green;
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="box">
+        <label>Usuario:</label>
+        <input type="text" id="usuario" placeholder="usuario">
+        <br>
+        <label id="errorUsuario" class="error"></label>
+        <br><br>
+
+        <label>Contraseña:</label>
+        <input type="password" id="contrasena" placeholder="****">
+        <br>
+        <label id="errorPass" class="error"></label>
+        <br><br>
+
+        <button onclick="validar()">Entrar</button>
+        <br><br>
+        <label id="validacionCorrecta" class="error"></label>
+    </div>
+
+    <script>
+        function validar() {
+            var exprUsuario = document.getElementById("usuario");
+            var exprPass = document.getElementById("contrasena");
+            var errorUsuario = document.getElementById("errorUsuario");
+            var errorPass = document.getElementById("errorPass");
+            var validacionCorrecta = document.getElementById("validacionCorrecta");
+
+            // Ocultar mensajes de error y validación correcta al iniciar la validación
+            errorUsuario.style.display = "none";
+            errorPass.style.display = "none";
+            validacionCorrecta.style.display = "none";
+
+            if (exprUsuario.value.length === 0) {
+                errorUsuario.innerHTML = "El campo no puede estar vacío.";
+                errorUsuario.style.display = "block";
+            } else if (exprUsuario.value.length < 3) {
+                errorUsuario.innerHTML = "La longitud debe ser superior a 3 caracteres.";
+                errorUsuario.style.display = "block";
+            }
+
+            if (exprPass.value.length === 0) {
+                errorPass.innerHTML = "El campo no puede estar vacío.";
+                errorPass.style.display = "block";
+            } else if (exprPass.value.length < 3) {
+                errorPass.innerHTML = "La longitud debe ser superior a 3 caracteres.";
+                errorPass.style.display = "block";
+            }
+
+            if (exprUsuario.value.length > 0 && exprUsuario.value.length >= 3 &&
+                exprPass.value.length > 0 && exprPass.value.length >= 3) {
+                validacionCorrecta.innerHTML = "¡Validación correcta!";
+                validacionCorrecta.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
